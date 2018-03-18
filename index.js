@@ -6,7 +6,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  res.send({ hi: 'there' });
+  res.send({ hi: 'hhah' });
 });
 
 // const keys = require('../config/keys');
@@ -14,9 +14,10 @@ app.get('/', (req, res) => {
 app.post('/payment', async (req, res) => {
   console.log('payment request..', req.body)
    var token = req.body.stripeToken; // Using Express
+   var amount = req.body.amount;
 
   var charge = stripe.charges.create({
-    amount: 444,
+    amount: amount,
     currency: "usd",
     description: "test charge",
     source: token,
