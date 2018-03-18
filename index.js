@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 
 // const keys = require('../config/keys');
 
-app.post('/apayment', async (req, res) => {
+app.post('/payment', async (req, res) => {
   console.log('payment request..', req.body)
    var token = req.body.stripeToken; // Using Express
 
