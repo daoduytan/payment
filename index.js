@@ -11,24 +11,25 @@ app.get('/', (req, res) => {
 
 // const keys = require('../config/keys');
 
-app.post('/payment', async (req, res) => {
-  console.log('req', req);
-  // const charge = await stripe.charges.create({
-  //   amount: 500,
-  //   currency: 'usd',
-  //   description: '$5 for 5 credits',
-  //   source: req.token
-  // }, function() {
-  //   if(err) {
-  //     console.log(err);
-  //     res.send('Failed')
-  //    } else {
-  //      console.log('success payment', charge);
-  //      res.send(charge)
-  //    }
-  // });
-});
+app.post('/apayment', async (req, res) => {
+  console.log('payment request..', req.body)
+   var token = req.body.stripeToken; // Using Express
 
+  var charge = stripe.charges.create({
+    amount: 444,
+    currency: "usd",
+    description: "test charge",
+    source: token,
+  }, function(err, charge) {
+   if(err) {
+    console.log(err);
+    res.send('Failed')
+   } else {
+     console.log('success payment', charge);
+     res.send(charge)
+   }
+  });
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
