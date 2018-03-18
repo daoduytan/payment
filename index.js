@@ -1,8 +1,9 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const stripe = require('stripe')('sk_test_MoKet6Hjhj8kbBm1idM8noGp');
+
 const app = express();
-
-
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.send({ hi: 'there' });
