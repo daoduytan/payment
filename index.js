@@ -10,23 +10,22 @@ app.get('/', (req, res) => {
 
 // const keys = require('../config/keys');
 
-app.post('/api/stripe', async (req, res) => {
-  console.log(req.token);
-
-  const charge = await stripe.charges.create({
-    amount: 500,
-    currency: 'usd',
-    description: '$5 for 5 credits',
-    source: req.token
-  }, function() {
-    if(err) {
-      console.log(err);
-      res.send('Failed')
-     } else {
-       console.log('success payment', charge);
-       res.send(charge)
-     }
-  });
+app.post('/payment', async (req, res) => {
+  console.log('req', req);
+  // const charge = await stripe.charges.create({
+  //   amount: 500,
+  //   currency: 'usd',
+  //   description: '$5 for 5 credits',
+  //   source: req.token
+  // }, function() {
+  //   if(err) {
+  //     console.log(err);
+  //     res.send('Failed')
+  //    } else {
+  //      console.log('success payment', charge);
+  //      res.send(charge)
+  //    }
+  // });
 });
 
 
